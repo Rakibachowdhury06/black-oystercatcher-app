@@ -12,11 +12,11 @@ Available at: https://open.canada.ca/data/en/dataset/d87383f6-5313-430d-8416-1b6
 License: Open Government Licence – Canada
 
 This program loads data from a CSV file and displays 
-it using custom Record objects stored in alost.
+it using custom Record objects stored in a list.
 """
 
 import csv
-from record import OystercatcherRecord
+from record import OysterCatcherRecord
 
 STUDENT_NAME = "Rakiba Chowdhury"
 
@@ -25,8 +25,8 @@ NUM_RECORDS_TO_LOAD = 5
 
 
 
-def load_records(filename: str, limit:int) -> list[OystercatcherRecord]:
-    records: list[OystercatcherRecord] = []
+def load_records(filename: str, limit:int) -> list[OysterCatcherRecord]:
+    records: list[OysterCatcherRecord] = []
 
     try:
         with open(filename, mode="r", encoding="utf-8-sig", newline="") as file:
@@ -36,7 +36,7 @@ def load_records(filename: str, limit:int) -> list[OystercatcherRecord]:
                 if i >= limit:
                     break
                 try:
-                    record = OystercatcherRecord.from_row(row)
+                    record = OysterCatcherRecord.from_row(row)
                     records.append(record)
                 except (ValueError, KeyError) as row_error:
                     # Skip bad rows but keep program running
@@ -64,10 +64,10 @@ def main() -> None:
     for r in records:
         print(
             f"{STUDENT_NAME} | "
-            f"date={r.visit_date}, site={r.site_identification}, species={r.species}, total_adults={r.total_black_oystercatcher_adults}"
+            f"date={r.visit_date}, site={r.site_id}, species={r.species}, total_adults={r.total_adults}"
     
         )
 
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()
 

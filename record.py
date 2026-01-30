@@ -21,8 +21,8 @@ class OysterCatcherRecord:
         self.species = species
         self.total_adults = total_adults
 
-        @classmethod
-        def from_row(cls, row: dict):
+    @classmethod
+    def from_row(cls, row: dict):
             """
             Create an OystercatcherRecord object from a CSV row dictionary.
             """
@@ -33,7 +33,7 @@ class OysterCatcherRecord:
                 total_adults=int(row["Total Black oystercatcher adults"])
             )
         
-        def __str__(self):
+    def __str__(self):
             """
             String representation used when printing the record.
             """
