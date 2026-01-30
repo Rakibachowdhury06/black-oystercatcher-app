@@ -15,8 +15,58 @@ This program loads data from a CSV file and displays
 it using custom Record objects stored in alost.
 """
 
-def main():
-    print("Hello from my cst8002 Practical Project!")
+import csv
+from record import OystercatcherRecord
+
+STUDENT_NAME = "Rakiba Chowdhury"
+
+CSV_FILE = "pacific_rim_npr_coastalmarine_black_oystercatcher_population_nesting_counts_2008-2017_data.csv"
+NUM_RECORDS_TO_LOAD = 5
+
+
+
+def load_records(filename: str, limit:int) -> list[OystercatcherRecord]:
+    records: list[OystercatcherRecord] = []
+
+    try:
+        with open(filename, mode="r", encoding="utf-8-sig", newline="") as file:
+            reader = csv.DictReader(file)
+
+            for i, row in enumerate(reader):
+                if i >= limit:
+                    break
+                try:
+                    record = OystercatcherRecord.from_row(row)
+                    records.append(record)
+                except (ValueError, KeyError) as row_error:
+                    # Skip bad rows but keep program running
+                    print(f"{STUDENT_NAME} | Skipping row {i + 1} due to parse error: {row_error}")
+
+    except FileNotFoundError:
+        print(f"{STUDENT_NAME} | ERROR: Could not find the file: {filename}")   
+    except PermissionError:
+        print(f"{STUDENT_NAME} | ERROR: Permission denied when trying to open: {filename}")
+    except Exception as e:
+        print(f"{STUDENT_NAME} | ERROR: Unexpected problem reading file: {e}")
+
+    return records
+
+def main() -> None:
+    print("=" * 60)
+    print(f"Student: {STUDENT_NAME}")
+    print("CST8002 Practical Project - Part 1")
+    print("=" * 60)
+
+    records = load_records(CSV_FILE, NUM_RECORDS_TO_LOAD)
+
+    print(f"\nLoaded {len(records)} record(s) from the first {NUM_RECORDS_TO_LOAD} line(s).\n")
+
+    for r in records:
+        print(
+            f"{STUDENT_NAME} | "
+            f"date={r.visit_date}, site={r.site_identification}, species={r.species}, total_adults={r.total_black_oystercatcher_adults}"
+    
+        )
 
     if __name__ == "__main__":
         main()
