@@ -15,7 +15,13 @@ The record class will represent one row from the Black Oystercatcher population 
 """
 
 class OysterCatcherRecord:
+    """
+    Represents one Black Oystercatcher observation record from the dataset.
+    """
     def __init__(self, visit_date: str, site_id: int, species: str, total_adults: int):
+        """
+        Initialize record with observation data.
+        """
         self.visit_date = visit_date
         self.site_id = site_id
         self.species = species
@@ -35,7 +41,7 @@ class OysterCatcherRecord:
         
     def __str__(self):
             """
-            String representation used when printing the record.
+            Return formatted string representation of the record.
             """
             return (
                 f"Date: {self.visit_date},"

@@ -26,6 +26,16 @@ NUM_RECORDS_TO_LOAD = 5
 
 
 def load_records(filename: str, limit:int) -> list[OysterCatcherRecord]:
+    """
+    Load records from CSV and parse into OysterCatcherRecord objects.
+
+    Args:
+        filename: Path to CSV file
+        limit: Maximum records to load
+
+    Returns:
+        List of OysterCatcherRecord objects
+    """
     records: list[OysterCatcherRecord] = []
 
     try:
@@ -52,6 +62,9 @@ def load_records(filename: str, limit:int) -> list[OysterCatcherRecord]:
     return records
 
 def main() -> None:
+    """
+    Main program entry point. Loads and displays Black Oystercatcher records.
+    """
     print("=" * 60)
     print(f"Student: {STUDENT_NAME}")
     print("CST8002 Practical Project - Part 1")
