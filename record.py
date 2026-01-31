@@ -12,6 +12,13 @@ Available at: https://open.canada.ca/data/en/dataset/d87383f6-5313-430d-8416-1b6
 License: Open Government Licence – Canada
 
 The record class will represent one row from the Black Oystercatcher population dataset.
+
+References:
+[1] Python Software Foundation. (n.d.). Classes. 
+    docs.python.org. [Online]. Available at: 
+    https://docs.python.org/3/tutorial/classes.html 
+    [Accessed on: January 30, 2026]
+    
 """
 
 class OysterCatcherRecord:

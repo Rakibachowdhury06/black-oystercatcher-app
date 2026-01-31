@@ -13,6 +13,21 @@ License: Open Government Licence – Canada
 
 This program loads data from a CSV file and displays 
 it using custom Record objects stored in a list.
+
+References:
+[1] Python Software Foundation. (n.d.). csv — CSV File Reading and Writing. 
+    docs.python.org. [Online]. Available at: 
+    https://docs.python.org/3/library/csv.html 
+    [Accessed on: January 30, 2026]
+[2] Python Software Foundation. (n.d.). Errors and Exceptions. 
+    docs.python.org. [Online]. Available at: 
+    https://docs.python.org/3/tutorial/errors.html 
+    [Accessed on: January 30, 2026]
+[3] Python Software Foundation. (n.d.). Built-in Types. 
+    docs.python.org. [Online]. Available at: 
+    https://docs.python.org/3/library/stdtypes.html 
+    [Accessed on: January 30, 2026]
+
 """
 
 import csv
