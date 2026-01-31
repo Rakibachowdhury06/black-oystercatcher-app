@@ -33,8 +33,10 @@ References:
 import csv
 from record import OysterCatcherRecord
 
+#Student name displayed throughout program execution
 STUDENT_NAME = "Rakiba Chowdhury"
 
+#Path to the Black Oystercatcher dataset CSV file
 CSV_FILE = "pacific_rim_npr_coastalmarine_black_oystercatcher_population_nesting_counts_2008-2017_data.csv"
 NUM_RECORDS_TO_LOAD = 5
 
