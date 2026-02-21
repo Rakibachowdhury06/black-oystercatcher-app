@@ -82,7 +82,20 @@ class RecordManager:
             OysterCatcherrecord: The record at the given index, or None
             if the index is out of range.
         """
-        return self.get_records
+        return self.records[index]
+    def get_record(self, index):
+        if 0 <= index < len(self.records):
+            return self.records[index]
+        return None
+    
+    def get_all_records(self):          
+        """
+        Retrieve all records currently stored in memory.
+
+        Returns:
+            list: The complete list of OysterCatcherRecord objects.
+        """
+        return self.records
     
     def get_record_count(self):
         """
