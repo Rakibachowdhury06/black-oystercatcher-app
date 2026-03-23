@@ -1,8 +1,8 @@
 """
 CST8002 - Programming Language Research Project
-Practical Project Part 2 - Project Review I
+Practical Project Part 3 - Project Review 2
 Professor: Stanley Pieda
-Due Date: See Brightspace
+Due Date: March 29, 2026
 Student: Rakiba Chowdhury
 Section: 020
 
@@ -16,12 +16,10 @@ Available at: https://open.canada.ca/data/en/dataset/d87383f6-5313-430d-8416-1b6
 License: Open Government Licence - Canada
 
 References:
-[1] Python Software Foundation, "csv - CSV File Reading and Writing,"
-    Python 3.12 Documentation. [Online]. Available:
-    https://docs.python.org/3/library/csv.html [Accessed Feb. 15, 2026]
-[2] Python Software Foundation, "uuid - UUID objects according to RFC 4122,"
-    Python 3.12 Documentation. [Online]. Available:
-    https://docs.python.org/3/library/uuid.html [Accessed Feb. 15, 2026]
+[1] Python Software Foundation. (2024). csv - CSV File Reading and Writing. docs.python.org [Online]. 
+Available: https://docs.python.org/3/library/csv.html [Accessed: Feb. 15, 2026].
+[2] Python Software Foundation. (2024). uuid - UUID objects according to RFC 4122. docs.python.org [Online]. 
+Available: https://docs.python.org/3/library/uuid.html [Accessed: Feb. 15, 2026].
 """
 
 import csv
@@ -51,8 +49,8 @@ def load_records_from_csv(filename, limit=100):
         list: A list of OysterCatcherRecord objects parsed from the file.
 
     Raises:
-        FileNotFoundError: If the CSV file does not exit.
-        PermissionErro: If the file cannot be accessed. 
+        FileNotFoundError: If the CSV file does not exist.
+        PermissionError: If the file cannot be accessed.
     """
 
     records = []
@@ -87,7 +85,7 @@ def save_records_to_csv(records):
     """
     Save a list of OysterCatcherRecord objects to a new CSV file.
 
-    Generates a unique file name using UUID (uuid4) and writes 
+    Generates a unique file name using UUID (uuid4) and writes
     all records in the list to the file in CSV format.
 
     Args:
@@ -119,6 +117,3 @@ def save_records_to_csv(records):
     except Exception as e:
         print(f"  ERROR: Could not save file: {e}")
         return None
-
-    
-    
