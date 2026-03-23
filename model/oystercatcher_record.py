@@ -1,8 +1,8 @@
 """
 CST8002 - Programming Language Research Project
-Practical Project Part 2 - Project Review I
+Practical Project Part 3 - Project Review 2
 Professor: Stanley Pieda
-Due Date: February 22, 2026
+Due Date: March 29, 2026
 Student: Rakiba Chowdhury
 Section: 020
 
@@ -15,9 +15,8 @@ Available at: https://open.canada.ca/data/en/dataset/d87383f6-5313-430d-8416-1b6
 License: Open Government Licence - Canada
 
 References:
-[1] Python Software Foundation, "Classes," Python 3.12 Documentation.
-    [Online]. Available: https://docs.python.org/3/tutorial/classes.html
-    [Accessed Jan. 27, 2026]
+[1] Python Software Foundation. (2024). Classes. docs.python.org [Online].
+ Available: https://docs.python.org/3/tutorial/classes.html [Accessed: Jan. 27, 2026].
 """
 
 
