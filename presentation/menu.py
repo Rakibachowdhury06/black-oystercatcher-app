@@ -1,6 +1,6 @@
 """
 CST8002 - Programming Language Research Project
-Practical Project Part 2 - Project Review I
+Practical Project Part 3 - Project Review 2
 Professor: Stanley Pieda
 Due Date: See Brightspace
 Student: Rakiba Chowdhury
@@ -16,12 +16,13 @@ Available at: https://open.canada.ca/data/en/dataset/d87383f6-5313-430d-8416-1b6
 License: Open Government Licence - Canada
 
 References:
-[1] Python Software Foundation, "Built-in Functions," Python 3.12 Documentation.
-    [Online]. Available: https://docs.python.org/3/library/functions.html
-    [Accessed Feb. 15, 2026]
+[1] Python Software Foundation. (2024). Built-in Functions. docs.python.org [Online].
+ Available: https://docs.python.org/3/library/functions.html [Accessed: Feb. 15, 2026].
+[2] Python Software Foundation. (2024). Sorting HOW TO. docs.python.org [Online]. 
+Available: https://docs.python.org/3/howto/sorting.html [Accessed: Mar. 20, 2026].
 """
 
-from business.record_manager import RecordManager
+from business.record_manager import RecordManager, SORTABLE_COLUMNS
 
 # Student name constant displayed throughout the program
 STUDENT_NAME = "Rakiba Chowdhury"
@@ -50,7 +51,7 @@ class Menu:
         """
         print("=" * 60)
         print(f"  Program by: {STUDENT_NAME}")
-        print("  CST8002 Practical Project - Part 2")
+        print("  CST8002 Practical Project - Part 3")
         print("=" * 60)
 
     def display_menu(self):
@@ -65,7 +66,8 @@ class Menu:
         print("  5. Create a new record")
         print("  6. Edit a record")
         print("  7. Delete a record")
-        print("  8. Exit")
+        print("  8. Sort records")
+        print("  9. Exit")
 
     def run(self):
         """
@@ -85,7 +87,7 @@ class Menu:
         while True:
             self.display_menu()
 
-            choice = input("\nEnter your choice (1-8): ").strip()
+            choice = input("\nEnter your choice (1-9): ").strip()
 
             if choice == "1":
                 self.reload_data()
@@ -102,10 +104,12 @@ class Menu:
             elif choice == "7":
                 self.delete_record()
             elif choice == "8":
+                self.sort_records()
+            elif choice == "9":
                 print(f"\nGoodbye! (Program by {STUDENT_NAME})")
                 break
             else:
-                print("  Invalid choice. Please enter a number from 1 to 8.")
+                print("  Invalid choice. Please enter a number from 1 to 9.")
 
     def reload_data(self):
         """
@@ -283,3 +287,43 @@ class Menu:
 
         except ValueError:
             print("  Please enter a valid number.")
+
+    def sort_records(self):
+        """
+        Sort all in-memory records by a user-selected column in ascending order.
+
+        Displays a sub-menu of available columns, prompts the user to choose
+        one, calls the business layer sort_records() method, then shows the
+        first five records so the user can confirm the sort worked.
+        """
+        print(f"\n--- Sort Records (Program by {STUDENT_NAME}) ---")
+
+        if self.manager.get_record_count() == 0:
+            print("  No records in memory.")
+            return
+
+        print("  Choose a column to sort by:")
+        print("    1. Visit date")
+        print("    2. Site identification")
+        print("    3. Species")
+        print("    4. Total Black oystercatcher adults")
+
+        column_choice = input("\n  Enter your choice (1-4): ").strip()
+
+        if column_choice not in SORTABLE_COLUMNS:
+            print("  Invalid choice. Please enter a number from 1 to 4.")
+            return
+
+        column_name = SORTABLE_COLUMNS[column_choice]
+        success = self.manager.sort_records(column_name)
+
+        if success:
+            print(f"\n  Records sorted by: {column_name} (ascending)")
+            print(f"  Showing first 5 records after sorting:\n")
+            for i in range(min(5, self.manager.get_record_count())):
+                record = self.manager.get_record(i)
+                print(f"    [{i + 1}] {record}")
+            print(f"\n  Total records: {self.manager.get_record_count()}")
+            print(f"  (Program by {STUDENT_NAME})")
+        else:
+            print("  Sorting failed. Could not sort by the selected column.")
