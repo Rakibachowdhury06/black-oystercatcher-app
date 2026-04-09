@@ -1,15 +1,15 @@
 """
 CST8002 - Programming Language Research Project
-Practical Project Part 3 - Project Review 2
+Practical Project Part 4 - Project Release
 Professor: Stanley Pieda
-Due Date: March 29, 2026
+Due Date: April 12, 2026
 Student: Rakiba Chowdhury
 Section: 020
 
 This module contains the RecordManager class which handles all
 business logic for managing OysterCatcherRecord objects in memory.
 It provides methods to create, read, update, delete, and sort records
-stored in a list.
+and aggregate data for visualization.
 
 Dataset Source:
 Parks Canada. (2017). Black Oystercatcher Population - Pacific Rim.
@@ -21,6 +21,8 @@ References:
 Available: https://docs.python.org/3/tutorial/datastructures.html [Accessed: Feb. 15, 2026].
 [2] Python Software Foundation. (2024). Sorting HOW TO. docs.python.org [Online]. 
 Available: https://docs.python.org/3/howto/sorting.html [Accessed: Mar. 20, 2026].
+[3] Python Software Foundation. (2024). Expressions - dict.get(). docs.python.org [Online].
+Available: https://docs.python.org/3/library/stdtypes.html#dict.get [Accessed: Apr. 5, 2026].
 """
 
 from model.oystercatcher_record import OysterCatcherRecord
@@ -201,5 +203,49 @@ class RecordManager:
 
         self.records.sort(key=lambda record: getattr(record, column_name))
         return True
+    
+    def get_adults_by_site(self):
+        """
+        Aggregate total Black Oystercatcher adults per site identification.
+
+        Iterates over all in-memory records and sums total_black_oystercatcher_adults
+        for each unique site_identification value. Used to supply data for the horizontal bar 
+        chart visualization.
+
+        Returns:
+            dict: A dictionary mapping site_identification (int) to the 
+            total adult count (int) across all records for that site.
+            Returns an emplty dict if no records are in memory.
+        """
+        site_totals = {}
+        for record in self.records:
+            site = record.site_identification
+            site_totals[site] = site_totals.get(site, 0) + record.total_black_oystercatcher_adults
+        return site_totals
+
+    def get_adults_by_year(self):
+        """
+        Aggregate total Black Oystercatcher adults per observation year.
+
+        Extracts the year from each record's visit_date (expected format 
+        DD/MM/YYYY), then sums total_oystercatcher_adults per year.
+        Used to supply data for the vertical bar chart visualization.
+
+        Returns:
+            dict: A dictionary mapping year (str) to the total adult count
+            (int) across all records for that year. Rows with an unparseable 
+            date are silently skipped.
+            Returns an empty dict if no records are in memory.
+        """   
+        year_totals = {}
+        for record in self.records:
+            try:
+                # visit_date format is DD/MM/YYYY - extract last segment
+                year = record.visit_date.strip().split("/")[-1]
+            except (IndexError, AttributeError):
+                continue
+            year_totals[year] = year_totals.get(year, 0) + record.total_black_oystercatcher_adults
+        return year_totals  
+        
 
     
