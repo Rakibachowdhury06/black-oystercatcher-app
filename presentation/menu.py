@@ -1,14 +1,15 @@
 """
 CST8002 - Programming Language Research Project
-Practical Project Part 3 - Project Review 2
+Practical Project Part 4 - Project Release
 Professor: Stanley Pieda
-Due Date: March 29, 2026
+Due Date: April 12, 2026
 Student: Rakiba Chowdhury
 Section: 020
 
 This module contains the Menu class which handles all user interaction
 for the program. It displays options, collects input, and calls the
-appropriate business layer methods.
+appropriate business layer methods. Part 4 adds a bar chart visualization
+feature using the matplotlib library.
 
 Dataset Source:
 Parks Canada. (2017). Black Oystercatcher Population - Pacific Rim.
@@ -20,8 +21,15 @@ References:
  Available: https://docs.python.org/3/library/functions.html [Accessed: Feb. 15, 2026].
 [2] Python Software Foundation. (2024). Sorting HOW TO. docs.python.org [Online]. 
 Available: https://docs.python.org/3/howto/sorting.html [Accessed: Mar. 20, 2026].
+[3] Hunter, J. D. (2007). Matplotlib: A 2D Graphics Environment. matplotlib.org [Online].
+Available: https://matplotlib.org/stable/index.html [Accessed: Apr. 5, 2026].
+[4] Matplotlib Development Team. (2024). matplotlib.pyplot.barh. matplotlib.org [Online].
+Available: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.barh.html [Accessed: Apr. 5, 2026].
+[5] Matplotlib Development Team. (2024). matplotlib.pyplot.bar. matplotlib.org [Online].
+Available: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.bar.html [Accessed: Apr. 5, 2026].
 """
 
+import matplotlib.pyplot as plt
 from business.record_manager import RecordManager, SORTABLE_COLUMNS
 
 # Student name constant displayed throughout the program
@@ -33,7 +41,8 @@ class Menu:
     Handles the user interface for the Black Oystercatcher data program.
 
     Displays a menu of options and processes user choices by calling
-    the appropriate methods on the RecordManager (business layer).
+    the appropriate methods on the RecordManager (business layer). Part 4 
+    adds option 9 for bar chart visualization using matplotlib.
 
     Attributes:
         manager (RecordManager): The business layer object managing records.
@@ -51,7 +60,7 @@ class Menu:
         """
         print("=" * 60)
         print(f"  Program by: {STUDENT_NAME}")
-        print("  CST8002 Practical Project - Part 3")
+        print("  CST8002 Practical Project - Part 4")
         print("=" * 60)
 
     def display_menu(self):
@@ -67,7 +76,8 @@ class Menu:
         print("  6. Edit a record")
         print("  7. Delete a record")
         print("  8. Sort records")
-        print("  9. Exit")
+        print("  9. Visualize data (Bar Chart)")
+        print("  10. Exit")
 
     def run(self):
         """
@@ -87,7 +97,7 @@ class Menu:
         while True:
             self.display_menu()
 
-            choice = input("\nEnter your choice (1-9): ").strip()
+            choice = input("\nEnter your choice (1-10): ").strip()
 
             if choice == "1":
                 self.reload_data()
@@ -106,6 +116,8 @@ class Menu:
             elif choice == "8":
                 self.sort_records()
             elif choice == "9":
+                self.show_chart()
+            elif choice == "10":
                 print(f"\nGoodbye! (Program by {STUDENT_NAME})")
                 break
             else:
@@ -327,3 +339,115 @@ class Menu:
             print(f"  (Program by {STUDENT_NAME})")
         else:
             print("  Sorting failed. Could not sort by the selected column.")
+
+    def show_chart(self):
+        """
+        Display a bar chart visualization of the Black Oystercatcher data.
+
+        Prompts the user to choose between two chart types:
+            1. Total adults per site (horizontal bar chart)
+            2. Total adults per year (vertical bar chart)
+
+        Retrieves aggregated data from the business layer and passes it 
+        to the appropriate private display method. Requires matplotlib
+        to be installed (pip install matplotlib).
+        """
+        print(f"\n--- Visualize Data (Program by {STUDENT_NAME}) ---")
+
+        if self.manager.get_record_count() == 0:
+            print(" No records in memory. Please reload data first.")
+            return
+        
+        print(" Choose chart type:")
+        print("   1. Total adults per site (Horizontal Bar Chart)")
+        print("   2. Total adults per year (Vertical Bar Chart)")
+
+        chart_choice = input("\n Enter your choice (1 or 2): ").strip()
+
+        if chart_choice == "1":
+           data = self.manager.get_adults_by_site()
+           if not data:
+               print("  No data available to chart.")
+               return
+           self._display_horizontal_bar_chart(
+               data,
+               title=f"Total Black Oystercatcher Adults per Site\n{STUDENT_NAME}",
+               xlabel="Total Adults",
+               ylabel="Site Identification"
+           )
+        
+        elif chart_choice == "2":
+            data = self.manager.get_adults_by_year()
+            if not data:
+                print(" No data availabe to chart.")
+                return
+            self._display_vertical_bar_chart(
+                data,
+                title=f"Total Black Oystercatcher Adults per Year\n{STUDENT_NAME}",
+                xlabel="Year",
+                ylabel="Total Adults"
+            )
+        
+        else:
+            print(" Invalid choice. Please enter 1 or 2.")
+
+    def _display_horizontal_bar_chart(self, data, title, xlabel, ylabel):
+        """
+        Render a horizontal bar chart using matplotlib and display it.
+
+        Sorts the data by site identification before plotting so bars
+        appear in a consistent order. Called by show_chart() when the 
+        user selects option 1.
+
+        Args:
+            data (dict): Dictionary mapping site_identification (int) to
+                total adult count (int).
+            title (str): Chart title string.
+            xlabel (str): Label for the x-axis.
+            ylabel (str): Label for the y-axis.
+        """
+        # Sort by site number for consistent display
+        sorted_items = sorted(data.items())
+        labels = [str(site) for site, _ in sorted_items]
+        values = [count for _, count in sorted_items]
+
+        fig, ax = plt.subplots(figsize=(10, 6))
+        ax.barh(labels, values, color="steelblue")
+        ax.set_title(title)
+        ax.set_xlabel(xlabel)
+        ax.set_ylabel(ylabel)
+        plt.tight_layout()
+        plt.show()
+
+        print(f"  Chart displayed. (Program by {STUDENT_NAME})")
+
+    def _display_vertical_bar_chart(self, data, title, xlabel, ylabel):
+        """
+        Render a veritcal bar chart using matplotlib and display it.
+
+        Sorts the data by year before plotting so bars appear in 
+        chronological order. Called by show_chart() when the user 
+        selects option 2.
+
+        Args:
+            data (dict): Dictionary mapping year (str) to total adult
+            count (int).
+            title (str): Chart title string.
+            xlabel (str): Label for the x-axis.
+            ylabel (str): Label for the y-axis.
+        """
+        # Sort by year for chronological display
+        sorted_items = sorted(data.items())
+        labels = [year for year, _ in sorted_items]
+        values = [count for _, count in sorted_items]
+
+        fig, ax = plt.subplots(figsize=(10, 6))
+        ax.bar(labels, values, color="darkorange")
+        ax.set_title(title)
+        ax.set_xlabel(xlabel)
+        ax.set_ylabel(ylabel)
+        plt.tight_layout()
+        plt.show()
+
+        print(f"  Chart displayed. (Program by {STUDENT_NAME})")
+        
