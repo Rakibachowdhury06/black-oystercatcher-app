@@ -1,8 +1,8 @@
 """
 CST8002 - Programming Language Research Project
-Practical Project Part 3 - Project Review 2
+Practical Project Part 4 - Project Release
 Professor: Stanley Pieda
-Due Date: March 29, 2026
+Due Date: April 12, 2026
 Student: Rakiba Chowdhury
 Section: 020
 
@@ -20,6 +20,9 @@ References:
 Available: https://docs.python.org/3/tutorial/modules.html [Accessed: Feb. 15, 2026].
 [2] Python Software Foundation. (2024). Sorting HOW TO. docs.python.org [Online].
 Available: https://docs.python.org/3/howto/sorting.html [Accessed: Mar. 20, 2026].
+[3] Hunter, J. D. (2007). Matplotlib: A 2D Graphics Environment. matplotlib.org [Online].
+Available: https://matplotlib.org/stable/index.html [Accessed: Apr. 5, 2026].
+
 """
 from presentation.menu import Menu
 
