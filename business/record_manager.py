@@ -11,11 +11,6 @@ business logic for managing OysterCatcherRecord objects in memory.
 It provides methods to create, read, update, delete, and sort records
 and aggregate data for visualization.
 
-Dataset Source:
-Parks Canada. (2017). Black Oystercatcher Population - Pacific Rim.
-Available at: https://open.canada.ca/data/en/dataset/d87383f6-5313-430d-8416-1b6d6e377e02
-License: Open Government Licence - Canada
-
 References:
 [1] Python Software Foundation. (2024). Data Structures. docs.python.org [Online]. 
 Available: https://docs.python.org/3/tutorial/datastructures.html [Accessed: Feb. 15, 2026].
@@ -23,6 +18,11 @@ Available: https://docs.python.org/3/tutorial/datastructures.html [Accessed: Feb
 Available: https://docs.python.org/3/howto/sorting.html [Accessed: Mar. 20, 2026].
 [3] Python Software Foundation. (2024). Expressions - dict.get(). docs.python.org [Online].
 Available: https://docs.python.org/3/library/stdtypes.html#dict.get [Accessed: Apr. 5, 2026].
+[4] Parks Canada. (2017, Oct. 1). Black Oystercatcher Population – Pacific Rim. open.canada.ca 
+[Online]. Available: https://open.canada.ca/data/en/dataset/d87383f6-5313-430d-8416-1b6d6e377e02 
+[Accessed: Apr. 12, 2026].
+[5] Government of Canada. (2025). Open Government Licence – Canada. open.canada.ca [Online]. 
+Available: https://open.canada.ca/en/open-government-licence-canada [Accessed: Apr. 12, 2026].
 """
 
 from model.oystercatcher_record import OysterCatcherRecord

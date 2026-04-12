@@ -11,11 +11,6 @@ for the program. It displays options, collects input, and calls the
 appropriate business layer methods. Part 4 adds a bar chart visualization
 feature using the matplotlib library.
 
-Dataset Source:
-Parks Canada. (2017). Black Oystercatcher Population - Pacific Rim.
-Available at: https://open.canada.ca/data/en/dataset/d87383f6-5313-430d-8416-1b6d6e377e02
-License: Open Government Licence - Canada
-
 References:
 [1] Python Software Foundation. (2024). Built-in Functions. docs.python.org [Online].
  Available: https://docs.python.org/3/library/functions.html [Accessed: Feb. 15, 2026].
@@ -27,6 +22,11 @@ Available: https://matplotlib.org/stable/index.html [Accessed: Apr. 5, 2026].
 Available: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.barh.html [Accessed: Apr. 5, 2026].
 [5] Matplotlib Development Team. (2024). matplotlib.pyplot.bar. matplotlib.org [Online].
 Available: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.bar.html [Accessed: Apr. 5, 2026].
+[6] Parks Canada. (2017, Oct. 1). Black Oystercatcher Population – Pacific Rim. open.canada.ca 
+[Online]. Available: https://open.canada.ca/data/en/dataset/d87383f6-5313-430d-8416-1b6d6e377e02 
+[Accessed: Apr. 12, 2026].
+[7] Government of Canada. (2025). Open Government Licence – Canada. open.canada.ca [Online]. 
+Available: https://open.canada.ca/en/open-government-licence-canada [Accessed: Apr. 12, 2026].
 """
 
 import matplotlib.pyplot as plt
