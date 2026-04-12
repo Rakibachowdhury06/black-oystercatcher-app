@@ -10,11 +10,6 @@ This module handles all file input/output operations for reading
 and writing CSV data. It uses the uuid library to generate unique
 file names when saving data.
 
-Dataset Source:
-Parks Canada. (2017). Black Oystercatcher Population - Pacific Rim.
-Available at: https://open.canada.ca/data/en/dataset/d87383f6-5313-430d-8416-1b6d6e377e02
-License: Open Government Licence - Canada
-
 References:
 [1] Python Software Foundation. (2024). csv - CSV File Reading and Writing. docs.python.org [Online]. 
 Available: https://docs.python.org/3/library/csv.html [Accessed: Feb. 15, 2026].
