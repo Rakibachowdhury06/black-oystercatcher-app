@@ -1,10 +1,5 @@
 """
-CST8002 - Programming Language Research Project
-Practical Project Part 4 - Project Release
-Professor: Stanley Pieda
-Due Date: April 12, 2026
-Student: Rakiba Chowdhury
-Section: 020
+Author: Rakiba Chowdhury
 
 This module contains the Menu class which handles all user interaction
 for the program. It displays options, collects input, and calls the

@@ -1,10 +1,5 @@
 """
-CST8002 - Programming Language Research Project
-Practical Project Part 4 - Project Release
-Professor: Stanley Pieda
-Due Date: April 12, 2026
-Student: Rakiba Chowdhury
-Section: 020
+Author: Rakiba Chowdhury
 
 This module handles all file input/output operations for reading
 and writing CSV data. It uses the uuid library to generate unique

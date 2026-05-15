@@ -1,10 +1,5 @@
 """
-CST8002 - Programming Language Research Project
-Practical Project Part 4 - Project Release
-Professor: Stanley Pieda
-Due Date: April 12, 2026
-Student: Rakiba Chowdhury
-Section: 020
+Author: Rakiba Chowdhury
 
 This module contains the RecordManager class which handles all
 business logic for managing OysterCatcherRecord objects in memory.
